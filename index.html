@@ -221,7 +221,9 @@ button {
       Participation is voluntary and all responses will remain confidential.
     </p>
 
-    <form id="surveyForm" action="https://formspree.io/f/xbdkowee" method="POST">
+
+  <!-- your inputs here -->
+  <form id="surveyForm">
 
   <!-- PERSONAL INFO -->
   <label for="firstName">First Name *</label><br>
@@ -361,10 +363,68 @@ button {
 
 
 
-  <!-- FOOTER -->
+<script>
+document.getElementById('surveyForm').addEventListener('submit', async function(e) {
+  e.preventDefault(); // Prevent default form submission
+
+  const form = e.target;
+  const submitButton = form.querySelector("button[type='submit']");
+
+  // Disable submit button to prevent multiple clicks
+  submitButton.disabled = true;
+  submitButton.innerText = "Submitting...";
+
+  // Collect all form data into an object
+  const data = Object.fromEntries(new FormData(form).entries());
+  // Example:
+  // {
+  //   First_Name: "John",
+  //   Last_Name: "Doe",
+  //   Age: "25",
+  //   q1_digital_literacy: "Ability to use digital tools",
+  //   ...
+  //   q15_consent: "Yes"
+  // }
+
+  try {
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycby-NYYYbfAvze5V18TunuK_8u6IV_bO4ahqKwTTvuMdCNRdFCkXFwtOFiXvw-MofjI6wg/exec", 
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }
+    );
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      alert("Form submitted successfully!");
+      form.reset(); // Clear the form
+    } else {
+      alert("Submission failed: " + result.message);
+      console.error(result);
+    }
+
+  } catch (error) {
+    alert("An error occurred while submitting the form.");
+    console.error(error);
+
+  } finally {
+    // Re-enable submit button
+    submitButton.disabled = false;
+    submitButton.innerText = "Submit";
+  }
+});
+</script>
+
+<!-- FOOTER -->
   <footer>
     © 2026 GDEH. All rights reserved.
   </footer>
+
+
+  
 
 </body>
 </html>
