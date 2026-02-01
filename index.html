@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GDEH Youth Survey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(
+        180deg,
+        #fff7ed,
+        #fde68a,
+        #f59e0b
+      );
+      color: #111827;
+    }
+
+    /* HEADER */
+    header {
+      padding: 20px 30px;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 10px 25px 40px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 20px 0 12px;
+      color: #9a3412;
+      .orange-text {
+  color: #ea580c; /* Orange */
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.25);
+}
+    }
+
+    .intro {
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #374151;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      margin: 40px 0 14px;
+      font-size: 0.95rem;
+      color: #9a3412;
+    }
+
+    label {
+      display: block;
+      font-weight: 300;
+      margin: 14px 0 6px;
+    }
+
+    /* INVISIBLE GLOWING FIELDS */
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 12px;
+      font-size: 0.75rem;
+      color: #111827;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid rgba(0,0,0,0.25);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(0,0,0,0.45);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-bottom-color: #ea580c;
+      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.35);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* CUSTOM CHECKBOX (INVISIBLE + GLOW) */
+    .consent {
+      margin: 35px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .consent input[type="checkbox"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      margin-top: 4px;
+      border-radius: 4px;
+      border: 2px solid rgba(0,0,0,0.4);
+      background: transparent;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .consent input[type="checkbox"]:checked {
+      border-color: #ea580c;
+      box-shadow: 0 0 12px rgba(234, 88, 12, 0.6);
+      background: rgba(234, 88, 12, 0.15);
+    }
+    button {
+  display: block;
+  margin: 0 auto;
+}
+
+ button {
+  width: auto;
+  padding: 10px 22px;
+  background: #ea580c;              /* Orange */
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;               /* Small rounded corners */
+  cursor: pointer;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,0.6),
+    0 0 14px rgba(255,255,255,0.8); /* White glow */
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,0.9),
+    0 0 22px rgba(255,255,255,1);
+}
+
+/* Optional: focus for accessibility */
+button:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,1),
+    0 0 26px rgba(255,255,255,1);
+}
+@keyframes buttonGlow {
+  from { box-shadow: 0 0 14px rgba(255,255,255,0.6); }
+  to   { box-shadow: 0 0 22px rgba(255,255,255,1); }
+}
+
+button {
+  animation: buttonGlow 2s infinite alternate;
+}
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.8rem;
+      color: #374151;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+  <div class="logo">
+    <img src="gdeh-logo.png" alt="GDEH Logo" style="height:36px; width:auto;">
+  </div>
+</header>
+
+  <!-- MAIN -->
+  <main>
+
+    <h1>Youth Digital & Economic Survey</h1>
+
+    <p class="intro">
+      This survey by <strong>GDEH</strong> seeks to understand digital literacy,
+      digital marketing capacity, online self-employment, agro-entrepreneurship,
+      and economic dependency among youth in Garissa County.
+      <br><br>
+      Participation is voluntary and all responses will remain confidential.
+    </p>
+
+    <form id="surveyForm">
+
+  <!-- DIGITAL EMPOWERMENT -->
+  <label>1. What is Digital Literacy?</label>
+  <select name="q1_digital_literacy" required>
+    <option value="">Select an option</option>
+    <option value="Ability to use digital tools">Ability to use digital tools</option>
+    <option value="Access to internet only">Access to internet only</option>
+    <option value="Using social media">Using social media</option>
+    <option value="Not sure">Not sure</option>
+  </select><br><br>
+
+  <label>2. Your capacity in Digital Skills</label>
+  <select name="q2_digital_capacity" required>
+    <option value="">Select an option</option>
+    <option value="High">High</option>
+    <option value="Moderate">Moderate</option>
+    <option value="Low">Low</option>
+    <option value="None">None</option>
+  </select><br><br>
+
+  <label>3. Knowledge of Digital Marketing Strategies</label>
+  <select name="q3_marketing_strategies" required>
+    <option value="">Select an option</option>
+    <option value="Very knowledgeable">Very knowledgeable</option>
+    <option value="Some knowledge">Some knowledge</option>
+    <option value="Basic knowledge">Basic knowledge</option>
+    <option value="No knowledge">No knowledge</option>
+  </select><br><br>
+
+  <!-- AGRO ENTREPRENEURSHIP -->
+  <label>4. What is Agro-Entrepreneurship?</label>
+  <select name="q4_agro_definition" required>
+    <option value="">Select an option</option>
+    <option value="Business activities in agriculture">Business activities in agriculture</option>
+    <option value="Farming only">Farming only</option>
+    <option value="Selling farm tools">Selling farm tools</option>
+    <option value="Not sure">Not sure</option>
+  </select><br><br>
+
+  <label>5. Your capacity in Agro-Entrepreneurship</label>
+  <select name="q5_agro_capacity" required>
+    <option value="">Select an option</option>
+    <option value="High">High</option>
+    <option value="Moderate">Moderate</option>
+    <option value="Low">Low</option>
+    <option value="None">None</option>
+  </select><br><br>
+
+  <!-- COMMUNITY ENGAGEMENT -->
+  <label>6. What is Community Engagement?</label>
+  <select name="q6_ce_definition" required>
+    <option value="">Select an option</option>
+    <option value="Participation in community activities">Participation in community activities</option>
+    <option value="Community meetings only">Community meetings only</option>
+    <option value="Volunteering">Volunteering</option>
+    <option value="Not sure">Not sure</option>
+  </select><br><br>
+
+  <label>7. Your capacity in Community Engagement</label>
+  <select name="q7_ce_capacity" required>
+    <option value="">Select an option</option>
+    <option value="Very active">Very active</option>
+    <option value="Active">Active</option>
+    <option value="Rarely involved">Rarely involved</option>
+    <option value="Not involved">Not involved</option>
+  </select><br><br>
+
+  <!-- EMPLOYMENT -->
+  <label>8. What is Employment?</label>
+  <select name="q8_employment_definition" required>
+    <option value="">Select an option</option>
+    <option value="Engagement in income-generating work">Engagement in income-generating work</option>
+    <option value="Office work only">Office work only</option>
+    <option value="Government jobs only">Government jobs only</option>
+    <option value="Not sure">Not sure</option>
+  </select><br><br>
+
+  <label>9. What is your current Employment Status?</label>
+  <select name="q9_employment_status" required>
+    <option value="">Select an option</option>
+    <option value="Employed">Employed</option>
+    <option value="Self-employed">Self-employed</option>
+    <option value="Unemployed">Unemployed</option>
+    <option value="Student">Student</option>
+  </select><br><br>
+
+  <!-- ONLINE PLATFORMS -->
+  <label>10. What are Online Platforms?</label>
+  <select name="q10_online_platforms" required>
+    <option value="">Select an option</option>
+    <option value="Digital spaces for communication and business">Digital spaces for communication and business</option>
+    <option value="Social media only">Social media only</option>
+    <option value="Websites only">Websites only</option>
+    <option value="Not sure">Not sure</option>
+  </select><br><br>
+
+  <label>11. Your capacity in using Online Platforms</label>
+  <select name="q11_online_capacity" required>
+    <option value="">Select an option</option>
+    <option value="Advanced">Advanced</option>
+    <option value="Intermediate">Intermediate</option>
+    <option value="Basic">Basic</option>
+    <option value="None">None</option>
+  </select><br><br>
+
+  <!-- ECONOMIC DEPENDENCY -->
+  <label>12. Your level of Economic Dependency</label>
+  <select name="q12_economic_dependency" required>
+    <option value="">Select an option</option>
+    <option value="Fully independent">Fully independent</option>
+    <option value="Partially dependent">Partially dependent</option>
+    <option value="Fully dependent">Fully dependent</option>
+  </select><br><br>
+
+  <!-- SUGGESTIONS -->
+  <label>13. What are your suggestions to improve overall digital empowerment, employment, and economic independence?</label>
+  <textarea name="q13_suggestions" rows="5" placeholder="Write your suggestions here..."></textarea><br><br>
+<!-- CONSENT -->
+      <div class="consent">
+        <input type="checkbox" required>
+        <span>
+          I confirm that I have read and understood the information above and
+          voluntarily agree to participate in this survey conducted by GDEH.
+        </span>
+      </div>
+ 
+ <button type="submit">Submit Survey</button>
+
+</form>
+      
+      
+  <!-- FOOTER -->
+  <footer>
+    © 2026 GDEH. All rights reserved.
+  </footer>
+
+</body>
+</html>
