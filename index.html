@@ -129,10 +129,9 @@
   position: relative; /* needed for ::after positioning */
 }
 
-.consent input[type="checkbox"]:checked {
-  border-color: #ea580c;
-  box-shadow: 0 0 12px rgba(234, 88, 12, 0.6);
-  background: rgba(234, 88, 12, 0.15);
+.}
+    input[type="checkbox"] {
+      margin-right: 8px;
 }
 
 /* ✅ Add a checkmark */
@@ -222,10 +221,20 @@ button {
       Participation is voluntary and all responses will remain confidential.
     </p>
 
-    <form id="surveyForm">
+    <form id="surveyForm" action="https://formspree.io/f/xbdkowee" method="POST">
+
+  <!-- PERSONAL INFO -->
+  <label for="firstName">First Name *</label><br>
+  <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required><br><br>
+
+  <label for="lastName">Last Name *</label><br>
+  <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required><br><br>
+
+  <label for="age">Age *</label><br>
+  <input type="number" id="age" name="age" placeholder="Enter your age" required><br><br>
 
   <!-- DIGITAL EMPOWERMENT -->
-  <label>1. What is Digital Literacy?</label>
+  <label>1. What is Digital Literacy?</label><br>
   <select name="q1_digital_literacy" required>
     <option value="">Select an option</option>
     <option value="Ability to use digital tools">Ability to use digital tools</option>
@@ -341,49 +350,17 @@ button {
   <label>13. What are your suggestions to improve overall digital empowerment, employment, and economic independence?</label>
   <textarea name="q13_suggestions" rows="5" placeholder="Write your suggestions here..."></textarea><br><br>
 <!-- CONSENT -->
-      <div class="consent">
-    <input type="checkbox" id="consent" name="consent" required>
-    <span>
-      I confirm that I have read and understood the information above and
-      voluntarily agree to participate in this survey conducted by GDEH.
-    </span>
-</div>
- 
- <button type="submit">Submit Survey</button>
+      <!-- Consent Checkbox -->
+  <label>
+    <input type="checkbox" name="consent" value="Yes" required>
+    I confirm that I have read and understood the information above and voluntarily agree to participate.
+  </label><br><br>
 
+  <button type="submit">Submit</button>
 </form>
-<script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbw0crAI3ohjXulEuSrQlltO1LS8OZsSV0BIUaEEjR4d9TdR3RT6niRMRyPjlYg0K8ZK/exec';
-const form = document.getElementById('survey-form');
-const msg = document.getElementById('response-message');
-const consent = document.getElementById('consent');
 
-form.addEventListener('submit', e => {
-  e.preventDefault(); // Prevent default form submission
 
-  // ✅ Check if consent is checked
-  if (!consent.checked) {
-    msg.innerText = "You must agree to participate before submitting.";
-    msg.style.color = "red";
-    return;
-  }
 
-  const formData = new FormData(form);
-
-  fetch(scriptURL, { method: 'POST', body: formData })
-    .then(response => response.text())
-    .then(data => {
-      msg.innerText = "Form submitted successfully!";
-      msg.style.color = "green";
-      form.reset();
-    })
-    .catch(error => {
-      msg.innerText = "Error submitting form.";
-      msg.style.color = "red";
-      console.error('Error:', error);
-    });
-});
-</script>
   <!-- FOOTER -->
   <footer>
     © 2026 GDEH. All rights reserved.
